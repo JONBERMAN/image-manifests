@@ -58,7 +58,7 @@ kind: Deployment
 metadata:
   labels:
     app: backend
-  name: backend
+  name: image-backend
 spec:
   replicas: 2
   selector:
@@ -80,7 +80,7 @@ spec:
               value: root
             - name: MYSQL_PASSWORD
               value: k8spass#
-          image: 192.168.1.183:443/test/backend:v1
+          image: taehoon981/backend:1.0
           name: backend
           ports:
             - containerPort: 8080
@@ -121,7 +121,7 @@ kind: Deployment
 metadata:
   labels:
     app: frontend
-  name: frontend
+  name: image-frontend
 spec:
   replicas: 2
   selector:
@@ -134,7 +134,7 @@ spec:
         app: frontend
     spec:
       containers:
-        - image: 192.168.1.183:443/test/frontend:v45
+        - image: taehoon981/web:1.0
           env:
             - name: ACCOUNTBOOK_API_ADDR
               value: backend.default
